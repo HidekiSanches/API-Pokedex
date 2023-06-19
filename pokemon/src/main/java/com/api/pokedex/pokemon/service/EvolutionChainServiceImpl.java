@@ -45,8 +45,8 @@ public class EvolutionChainServiceImpl implements EvolutionChainService {
     }
 
     @Override
-    public EvolutionChain findById(UUID evolutionChainId) {
-        EvolutionChain evolutionChain = evolutionChainRepository.findById(evolutionChainId)
+    public EvolutionChain findById(UUID Id) {
+        EvolutionChain evolutionChain = evolutionChainRepository.findById(Id)
                 .orElseThrow();
 
         return evolutionChain;

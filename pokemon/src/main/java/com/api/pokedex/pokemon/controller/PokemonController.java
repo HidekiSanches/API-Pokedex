@@ -2,6 +2,7 @@ package com.api.pokedex.pokemon.controller;
 
 import com.api.pokedex.pokemon.dto.EvolutionChainDTO;
 import com.api.pokedex.pokemon.dto.PokemonDTO;
+import com.api.pokedex.pokemon.model.EvolutionChain;
 import com.api.pokedex.pokemon.model.Pokemon;
 import com.api.pokedex.pokemon.service.EvolutionChainService;
 import com.api.pokedex.pokemon.service.PokemonService;
@@ -33,6 +34,12 @@ public class PokemonController {
     public ResponseEntity<List<Pokemon>> findAll() {
         List<Pokemon> pokemons = pokemonService.findAll();
         return ResponseEntity.ok(pokemons);
+    }
+
+    @GetMapping("/{Id}")
+    public ResponseEntity<Pokemon> findById(@PathVariable UUID Id) {
+        Pokemon pokemon = pokemonService.findById(Id);
+        return ResponseEntity.ok(pokemon);
     }
 
 }

@@ -46,4 +46,12 @@ public class RegionServiceImpl implements RegionService{
         return regions;
     }
 
+    @Override
+    public Region findById(UUID Id) {
+        Region region = regionRepository.findById(Id)
+                .orElseThrow();
+
+        return region;
+    }
+
 }

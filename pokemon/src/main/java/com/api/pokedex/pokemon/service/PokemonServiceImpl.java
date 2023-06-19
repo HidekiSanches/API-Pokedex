@@ -97,4 +97,13 @@ public class PokemonServiceImpl implements PokemonService {
         List<Pokemon> pokemons = pokemonRepository.findAll();
         return pokemons;
     }
+
+    @Override
+    public Pokemon findById(UUID Id) {
+        Pokemon pokemon = pokemonRepository.findById(Id)
+                .orElseThrow();
+
+        return pokemon;
+    }
+
 }

@@ -27,9 +27,9 @@ public class EvolutionChainController {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedEvolutionChain);
     }
 
-    @GetMapping("/{evolutionChainId}")
-    public ResponseEntity<EvolutionChain> findById(@PathVariable UUID evolutionChainId) {
-        EvolutionChain evolutionChain = evolutionChainService.findById(evolutionChainId);
+    @GetMapping("/{Id}")
+    public ResponseEntity<EvolutionChain> findById(@PathVariable UUID Id) {
+        EvolutionChain evolutionChain = evolutionChainService.findById(Id);
         return ResponseEntity.ok(evolutionChain);
     }
 

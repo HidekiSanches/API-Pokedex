@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RestControllerAdvice
@@ -30,5 +31,12 @@ public class RegionController {
         List<Region> regions = regionService.findAll();
         return ResponseEntity.ok(regions);
     }
+
+    @GetMapping("/{Id}")
+    public ResponseEntity<Region> findById(@PathVariable UUID Id) {
+        Region region = regionService.findById(Id);
+        return ResponseEntity.ok(region);
+    }
+
 
 }
