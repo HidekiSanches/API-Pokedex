@@ -42,4 +42,9 @@ public class PokemonController {
         return ResponseEntity.ok(pokemon);
     }
 
+    @DeleteMapping("/{Id}")
+    public void deleteById(@PathVariable UUID Id) {
+        pokemonService.deleteById(Id);
+    }
+
 }

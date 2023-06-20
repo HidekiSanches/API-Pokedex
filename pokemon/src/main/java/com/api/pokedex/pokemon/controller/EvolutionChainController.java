@@ -39,4 +39,9 @@ public class EvolutionChainController {
         return ResponseEntity.ok(evolutions);
     }
 
+    @DeleteMapping("/{Id}")
+    public void deleteById(@PathVariable UUID Id) {
+        evolutionChainService.deleteById(Id);
+    }
+
 }

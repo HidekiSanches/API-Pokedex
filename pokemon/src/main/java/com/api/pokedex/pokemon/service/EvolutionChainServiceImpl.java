@@ -58,4 +58,9 @@ public class EvolutionChainServiceImpl implements EvolutionChainService {
         return evolutions;
     }
 
+    @Override
+    public void deleteById(UUID Id) {
+        evolutionChainRepository.deleteById(Id);
+    }
+
 }

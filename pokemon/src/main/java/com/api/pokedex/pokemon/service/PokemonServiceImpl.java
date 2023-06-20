@@ -106,4 +106,9 @@ public class PokemonServiceImpl implements PokemonService {
         return pokemon;
     }
 
+    @Override
+    public void deleteById(UUID Id) {
+        pokemonRepository.deleteById(Id);
+    }
+
 }

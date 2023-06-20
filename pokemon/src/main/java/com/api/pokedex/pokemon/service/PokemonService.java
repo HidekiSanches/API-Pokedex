@@ -11,4 +11,5 @@ public interface PokemonService {
     PokemonDTO savePokemon(PokemonDTO pokemonDTO);
     List<Pokemon> findAll();
     Pokemon findById(UUID id);
+    void deleteById(UUID id);
 }

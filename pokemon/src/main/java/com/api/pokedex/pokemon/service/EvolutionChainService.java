@@ -11,4 +11,5 @@ public interface EvolutionChainService {
     EvolutionChainDTO saveEvolutionChain(EvolutionChainDTO evolutionChainDTO);
     EvolutionChain findById(UUID id);
     List<EvolutionChain> findAll();
+    void deleteById(UUID Id);
 }

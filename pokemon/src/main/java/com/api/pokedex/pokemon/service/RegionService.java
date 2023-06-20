@@ -11,4 +11,5 @@ public interface RegionService {
     RegionDTO saveRegion(RegionDTO regionDTO);
     List<Region> findAll();
     Region findById(UUID id);
+    void deleteById(UUID id);
 }

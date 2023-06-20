@@ -54,4 +54,9 @@ public class RegionServiceImpl implements RegionService{
         return region;
     }
 
+    @Override
+    public void deleteById(UUID Id) {
+        regionRepository.deleteById(Id);
+    }
+
 }

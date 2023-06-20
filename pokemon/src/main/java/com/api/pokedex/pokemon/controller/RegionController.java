@@ -38,5 +38,8 @@ public class RegionController {
         return ResponseEntity.ok(region);
     }
 
-
+    @DeleteMapping("/{Id}")
+    public void deleteById(@PathVariable UUID Id) {
+        regionService.deleteById(Id);
+    }
 }
