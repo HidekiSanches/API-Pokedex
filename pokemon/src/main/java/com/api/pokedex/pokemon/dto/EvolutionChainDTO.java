@@ -1,6 +1,5 @@
 package com.api.pokedex.pokemon.dto;
 
-import com.api.pokedex.pokemon.model.Pokemon;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
