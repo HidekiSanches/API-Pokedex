@@ -19,7 +19,7 @@ public class EvolutionChain {
 
     @Id
     @GeneratedValue(generator = "uuid")
-    @Column(name = "id_evolucao", length = 16)
+    @Column(name = "id_evolucao", length = 16, columnDefinition = "uuid")
     private UUID id;
     @ManyToOne
     @JoinColumn(name = "pokemon_base_id")

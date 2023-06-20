@@ -20,7 +20,7 @@ public class Pokemon {
 
     @Id
     @GeneratedValue(generator = "uuid")
-    @Column(name = "id_pokemon", length = 16)
+    @Column(name = "id_pokemon", length = 16, columnDefinition = "uuid")
     private UUID id;
     @Column(name = "nome", length = 100, unique = true, nullable = false)
     private String name;

@@ -2,6 +2,7 @@ package com.api.pokedex.pokemon.service;
 
 import com.api.pokedex.pokemon.dto.EvolutionChainDTO;
 import com.api.pokedex.pokemon.dto.PokemonDTO;
+import com.api.pokedex.pokemon.exception.GlobalExceptionHandler;
 import com.api.pokedex.pokemon.model.EvolutionChain;
 import com.api.pokedex.pokemon.model.Pokemon;
 import com.api.pokedex.pokemon.repository.EvolutionChainRepository;
@@ -27,7 +28,7 @@ public class EvolutionChainServiceImpl implements EvolutionChainService {
     @Override
     public EvolutionChainDTO saveEvolutionChain(EvolutionChainDTO evolutionChainDTO) {
         Pokemon basePokemon = pokemonRepository.findById(evolutionChainDTO.getBasePokemonId())
-                .orElseThrow(() -> new IllegalArgumentException("Base Pokemon not found"));
+                .orElseThrow(() -> new GlobalExceptionHandler.NotFoundException("Base Pokemon not found"));
 
         EvolutionChain evolutionChain = new EvolutionChain();
         evolutionChain.setId(basePokemon.getId());
@@ -47,7 +48,7 @@ public class EvolutionChainServiceImpl implements EvolutionChainService {
     @Override
     public EvolutionChain findById(UUID Id) {
         EvolutionChain evolutionChain = evolutionChainRepository.findById(Id)
-                .orElseThrow();
+                .orElseThrow(() -> new GlobalExceptionHandler.NotFoundException("Invalid evolution chain ID: " + Id));
 
         return evolutionChain;
     }
@@ -60,6 +61,10 @@ public class EvolutionChainServiceImpl implements EvolutionChainService {
 
     @Override
     public void deleteById(UUID Id) {
+        if (!evolutionChainRepository.existsById(Id)) {
+            throw new GlobalExceptionHandler.NotFoundException("Evolution Chain not found with ID: " + Id);
+        }
+
         evolutionChainRepository.deleteById(Id);
     }
 
