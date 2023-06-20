@@ -21,10 +21,10 @@ public class Region {
 
     @Id
     @GeneratedValue(generator = "uuid")
-    @Column(name = "id")
+    @Column(name = "id", length = 16, columnDefinition = "uuid")
     private UUID id;
 
-    @Column(name = "name", length = 50, nullable = false)
+    @Column(name = "name", length = 50, nullable = false, unique = true)
     private String name;
 
     @ManyToMany(mappedBy = "regions")

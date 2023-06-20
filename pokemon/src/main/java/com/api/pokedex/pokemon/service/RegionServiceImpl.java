@@ -1,6 +1,7 @@
 package com.api.pokedex.pokemon.service;
 
 import com.api.pokedex.pokemon.dto.RegionDTO;
+import com.api.pokedex.pokemon.exception.GlobalExceptionHandler;
 import com.api.pokedex.pokemon.model.Pokemon;
 import com.api.pokedex.pokemon.model.Region;
 import com.api.pokedex.pokemon.repository.PokemonRepository;
@@ -24,6 +25,12 @@ public class RegionServiceImpl implements RegionService{
 
     @Override
     public RegionDTO saveRegion(RegionDTO regionDTO) {
+        validateRegionDTO(regionDTO);
+
+        if (regionRepository.existsByName(regionDTO.getName())) {
+            throw new GlobalExceptionHandler.BadRequestException("Region name must be unique");
+        }
+
         Region region = new Region();
         region.setName(regionDTO.getName());
 
@@ -40,6 +47,12 @@ public class RegionServiceImpl implements RegionService{
         return regionDTOSaved;
     }
 
+    private void validateRegionDTO(RegionDTO regionDTO) {
+        if (regionDTO.getName() == null || regionDTO.getName().isEmpty()) {
+            throw new GlobalExceptionHandler.BadRequestException("Region name is required");
+        }
+    }
+
     @Override
     public List<Region> findAll() {
         List<Region> regions = regionRepository.findAll();
@@ -49,13 +62,17 @@ public class RegionServiceImpl implements RegionService{
     @Override
     public Region findById(UUID Id) {
         Region region = regionRepository.findById(Id)
-                .orElseThrow();
+                .orElseThrow(() -> new GlobalExceptionHandler.NotFoundException("Invalid region ID: " + Id));
 
         return region;
     }
 
     @Override
     public void deleteById(UUID Id) {
+        if (!regionRepository.existsById(Id)) {
+            throw new GlobalExceptionHandler.NotFoundException("Region not found with ID: " + Id);
+        }
+
         regionRepository.deleteById(Id);
     }
 
