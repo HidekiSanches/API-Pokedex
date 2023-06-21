@@ -40,8 +40,8 @@ public class Pokemon {
     @ManyToMany
     @JoinTable(
             name = "pokemon_regiao",
-            joinColumns = @JoinColumn(name = "pokemon_id"),
-            inverseJoinColumns = @JoinColumn(name = "regiao_id")
+            joinColumns = @JoinColumn(name = "pokemon_id", referencedColumnName = "id_pokemon"),
+            inverseJoinColumns = @JoinColumn(name = "regiao_id", referencedColumnName = "id")
     )
     private Set<Region> regions;
 
