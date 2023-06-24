@@ -10,7 +10,7 @@ import lombok.Setter;
 import java.util.UUID;
 
 @Entity
-@Table(name = "evolucao")
+@Table(name = "evolution_chain")
 @Getter
 @Setter
 @AllArgsConstructor
