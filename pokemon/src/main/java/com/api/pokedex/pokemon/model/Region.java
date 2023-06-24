@@ -12,7 +12,7 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Table(name = "regiao")
+@Table(name = "region")
 @Setter
 @Getter
 @NoArgsConstructor
@@ -24,7 +24,7 @@ public class Region {
     @Column(name = "id", length = 16, columnDefinition = "uuid")
     private UUID id;
 
-    @Column(name = "name", length = 50, nullable = false, unique = true)
+    @Column(name = "nome", length = 50, nullable = false, unique = true)
     private String name;
 
     @ManyToMany(mappedBy = "regions")

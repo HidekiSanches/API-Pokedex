@@ -39,9 +39,9 @@ public class Pokemon {
     private EvolutionChain evolutionChainId;
     @ManyToMany
     @JoinTable(
-            name = "pokemon_regiao",
+            name = "pokemon_region",
             joinColumns = @JoinColumn(name = "pokemon_id", referencedColumnName = "id_pokemon"),
-            inverseJoinColumns = @JoinColumn(name = "regiao_id", referencedColumnName = "id")
+            inverseJoinColumns = @JoinColumn(name = "region_id", referencedColumnName = "id")
     )
     private Set<Region> regions;
 

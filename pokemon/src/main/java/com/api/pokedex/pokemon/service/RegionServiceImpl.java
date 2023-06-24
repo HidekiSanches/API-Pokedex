@@ -8,6 +8,7 @@ import com.api.pokedex.pokemon.repository.PokemonRepository;
 import com.api.pokedex.pokemon.repository.RegionRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -34,9 +35,10 @@ public class RegionServiceImpl implements RegionService{
         Region region = new Region();
         region.setName(regionDTO.getName());
 
-        if(regionDTO.getPokemonsIds() != null && !regionDTO.getPokemonsIds().isEmpty()){
-            Set<Pokemon> pokemons = (Set<Pokemon>) pokemonRepository.findAllById(regionDTO.getPokemonsIds());
-            region.setPokemons(pokemons);
+        if (regionDTO.getPokemonsIds() != null && !regionDTO.getPokemonsIds().isEmpty()) {
+            List<Pokemon> pokemonsList = pokemonRepository.findAllById(regionDTO.getPokemonsIds());
+            Set<Pokemon> pokemonsSet = new HashSet<>(pokemonsList);
+            region.setPokemons(pokemonsSet);
         }
 
         Region regionSaved = regionRepository.save(region);

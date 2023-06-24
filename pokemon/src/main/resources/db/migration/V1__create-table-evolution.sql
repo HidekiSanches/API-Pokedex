@@ -1,4 +1,4 @@
 CREATE TABLE evolution_chain (
-    id_evolucao binary(16),
-    PRIMARY KEY (id_evolucao)
+    id_evolucao BINARY(16) PRIMARY KEY,
+    pokemon_base_id BINARY(16)
 );

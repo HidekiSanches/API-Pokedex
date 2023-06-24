@@ -1,7 +1,7 @@
-CREATE TABLE pokemon_regiao (
+CREATE TABLE pokemon_region (
     pokemon_id binary(16),
-    regiao_id binary(16),
-    PRIMARY KEY (pokemon_id, regiao_id),
+    region_id binary(16),
+    PRIMARY KEY (pokemon_id, region_id),
     FOREIGN KEY (pokemon_id) REFERENCES pokemon (id_pokemon),
-    FOREIGN KEY (regiao_id) REFERENCES region (id)
+    FOREIGN KEY (region_id) REFERENCES region (id)
 );
