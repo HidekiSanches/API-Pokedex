@@ -15,8 +15,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 
 @EnableWebSecurity
+@EnableAuthorizationServer
+@EnableResourceServer
 @Profile("production")
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
@@ -49,6 +53,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .csrf()
                 .disable()
+                .authorizeRequests()
+                .antMatchers("/user")
+                .permitAll()
+                .and()
                 .authorizeRequests()
                 .antMatchers("/region", "/pokemon", "/evolution-chain")
                 .authenticated()

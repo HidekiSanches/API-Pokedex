@@ -1,9 +1,11 @@
 package com.api.pokedex.pokemon.controller;
 
+import com.api.pokedex.pokemon.dto.EvolutionChainDTO;
 import com.api.pokedex.pokemon.dto.RegionDTO;
 import com.api.pokedex.pokemon.model.Pokemon;
 import com.api.pokedex.pokemon.model.Region;
 import com.api.pokedex.pokemon.service.RegionService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,8 +24,9 @@ public class RegionController {
     }
 
     @RequestMapping("/save")
-    public RegionDTO saveRegion(@RequestBody RegionDTO regionDTO){
-        return regionService.saveRegion(regionDTO);
+    public ResponseEntity<RegionDTO> saveRegion(@RequestBody RegionDTO regionDTO){
+        RegionDTO savedRegion = regionService.saveRegion(regionDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedRegion);
     }
 
     @GetMapping("/")
@@ -39,7 +42,8 @@ public class RegionController {
     }
 
     @DeleteMapping("/{Id}")
-    public void deleteById(@PathVariable UUID Id) {
+    public ResponseEntity deleteById(@PathVariable UUID Id) {
         regionService.deleteById(Id);
+        return ResponseEntity.noContent().build();
     }
 }
