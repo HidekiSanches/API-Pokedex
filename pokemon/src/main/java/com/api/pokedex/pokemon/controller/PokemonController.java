@@ -6,6 +6,7 @@ import com.api.pokedex.pokemon.model.EvolutionChain;
 import com.api.pokedex.pokemon.model.Pokemon;
 import com.api.pokedex.pokemon.service.EvolutionChainService;
 import com.api.pokedex.pokemon.service.PokemonService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,8 +27,9 @@ public class PokemonController {
     }
 
     @PostMapping("/save")
-    public PokemonDTO savePokemon(@RequestBody PokemonDTO pokemonDTO){
-        return pokemonService.savePokemon(pokemonDTO);
+    public ResponseEntity<PokemonDTO> savePokemon(@RequestBody PokemonDTO pokemonDTO){
+        PokemonDTO savedPokemon = pokemonService.savePokemon(pokemonDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedPokemon);
     }
 
     @GetMapping("/")
@@ -43,8 +45,9 @@ public class PokemonController {
     }
 
     @DeleteMapping("/{Id}")
-    public void deleteById(@PathVariable UUID Id) {
+    public ResponseEntity deleteById(@PathVariable UUID Id) {
         pokemonService.deleteById(Id);
+        return ResponseEntity.noContent().build();
     }
 
 }
